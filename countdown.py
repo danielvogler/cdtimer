@@ -27,24 +27,26 @@ class CountdownApp(tk.Frame):
     def gui(self):
 
         ### field to enter time
-        self.entry = Entry(self.master, width=10, font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text)
-        self.entry.pack()
+        self.entry = Entry(self.master, width=10, font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, relief="flat", justify='center')
 
         ### submit entered time button
-        self.submit_button = Button(self.master, text="Set time", font=(self.font_type, self.font_size_button), fg=self.font_color_text, bg=self.color_background, command = self.parse_input )
-        self.submit_button.pack()
+        self.submit_button = Button(self.master, text="Set time", font=(self.font_type, self.font_size_button), fg=self.font_color_text, bg=self.color_background, borderwidth=0, highlightthickness=0, command = self.parse_input )
 
         ### time display
-        self.time_display = Label(self.master, text="00:00:00", font=(self.font_type, self.font_size_time_display), width=10, fg=self.font_color_time_display, bg=self.color_background)
-        self.time_display.pack()
+        self.time_display = Label(self.master, text="00:00:00", font=(self.font_type, self.font_size_time_display), borderwidth=2, fg=self.font_color_time_display, bg=self.color_background)
 
         ### start countdown button
-        self.start_button = Button(self.master, text="Start", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, command=self.start)
-        self.start_button.pack()
+        self.start_button = Button(self.master, text="Start", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.start)
 
         ### close window button
-        self.close_button = Button(self.master, text="Close", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, command=self.master.quit)
-        self.close_button.pack()
+        self.close_button = Button(self.master, text="Close", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.master.quit)
+
+        ### layout
+        self.time_display.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.entry.place(relx=0.5, rely=0.1, anchor=CENTER)
+        self.submit_button.place(relx=0.5, rely=0.2, anchor=CENTER)
+        self.start_button.place(relx=0.4, rely=0.9, anchor=CENTER)
+        self.close_button.place(relx=0.6, rely=0.9, anchor=CENTER)
 
 
     ### get time from entry field
@@ -123,7 +125,8 @@ class CountdownApp(tk.Frame):
         self.font_color_text = "white"
         self.font_size_time_display = 200
         self.font_size_button = 40
-        self.window_resolution = "2000x1500"
+        self.button_borderwidth = 5
+        self.window_resolution = "2000x1400"
         self.font_type = "Helvetica"
 
 
