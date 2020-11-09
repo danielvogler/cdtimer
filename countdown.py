@@ -203,7 +203,10 @@ class CountdownApp(tk.Frame):
         else:
             print("Reading:", self.tt_file)
             ### construct time timetable
-            self.tt_list, self.tt_set_time = read_timetable_file(self.tt_file)
+            self.tt_list, self.tt_set_time, self.set_time = read_timetable_file(self.tt_file)
+            self.time = self.set_time
+            ### update time display
+            self.update_time_display()
             ### current set
             tt_string = str(self.tt_list[0][0]+" "+self.tt_list[0][1]+" #"+ self.tt_list[0][2])
             ### update timetable display
