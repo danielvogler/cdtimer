@@ -10,6 +10,9 @@ from tkinter import filedialog
 import os
 from threading import Thread
 
+import warnings
+warnings.filterwarnings("ignore", message="play FAIL sox: Sorry, there is no default audio device configured")
+
 
 class CountdownApp(tk.Frame):  
 
@@ -215,7 +218,7 @@ class CountdownApp(tk.Frame):
         self.font_color_tt_display = "blue"
         self.font_color_text = "white"
         self.font_size_time_display = 200
-        self.font_size_tt_display = 40
+        self.font_size_tt_display = 100
         self.font_size_button = 40
         self.button_borderwidth = 5
         self.window_resolution = "2000x1400"
