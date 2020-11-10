@@ -15,6 +15,7 @@ A countdown tool with large display that counts down from a set time. Optionally
 - **Sound**: Turn sound effects on/off at the bottom. 
 - **Time format**: Any given HH:MM:SS, MM:SS, SS format. 
 - **Start**: Use the Start/Stop button to start the countdown.
+- **Next** (only for loaded timetables): Skip to next set
 
 ### Dependencies
 - [SoX - Sound eXchange](http://sox.sourceforge.net/) - Only if you want to play sound. 
