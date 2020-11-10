@@ -49,12 +49,14 @@ class CountdownApp(tk.Frame):
         ### set time display
         self.interval_display = Label(self.master, text="", font=(self.font_type, self.font_size_tt_display), borderwidth=2, fg=self.font_color_tt_display, bg=self.color_background)
 
-        ### start countdown button
-        self.start_button = Button(self.master, text="Start", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.start)
-        ### close window button
-        self.close_button = Button(self.master, text="Close", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.master.quit)
         ### turn sound ON/OFF
         self.sound_button = Button(self.master, text="Sound OFF", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.sound)
+        ### start countdown button
+        self.start_button = Button(self.master, text="Start", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.start)
+        ### next button
+        self.next_button = Button(self.master, text="Next", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.next)
+        ### close window button
+        self.close_button = Button(self.master, text="Close", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.master.quit)
 
         ### browse for timetable file
         self.browse_file = Button(self.master,text = "Browse Files", bg=self.color_background, fg=self.font_color_text,command = self.browseFiles)  
@@ -129,7 +131,7 @@ class CountdownApp(tk.Frame):
         self.time_string = self.time_format(self.time)
         
         if (self.set_time - self.time) % self.sound_frequency == 0 and (self.set_time - self.time) != 0 and self.sound_on:
-            self.play_sound(0.2, 600) 
+            self.play_sound(self.sound_duration, 600) 
         
         self.time_display.configure(text=self.time_string, fg = self.font_color_time_display)
 
@@ -138,11 +140,17 @@ class CountdownApp(tk.Frame):
     def start(self):
 
         self.start_button.configure(text="Stop", command=lambda: self.stop())
-        if self.sound_on:
-            self.play_sound(0.2, 600)
+        self.play_sound(self.sound_duration, 600)
 
         self.app_running = True
         self.update_time()
+
+
+    ### next interval
+    def next(self):
+        
+        if self.tt_loaded:
+            self.time = self.time - self.interval_time + 1
 
 
     ### turn sound on and off
@@ -155,7 +163,7 @@ class CountdownApp(tk.Frame):
         elif self.sound_on == False:
             self.sound_button.configure(text="Sound ON")
             self.sound_on = True
-            self.play_sound(0.2, 600)
+            self.play_sound(self.sound_duration, 600)
 
 
     ### set sound signal frequency
@@ -166,7 +174,8 @@ class CountdownApp(tk.Frame):
 
     ### play sound
     def play_sound(self, duration, frequency):
-        os.system('play -n synth %s sin %s' % (duration, frequency))
+        if self.sound_on:
+            os.system('play -n synth %s sin %s' % (duration, frequency))
 
 
     ### update time 
@@ -195,10 +204,10 @@ class CountdownApp(tk.Frame):
                     ### string for timetable display
                     tt_string = str(self.tt_list[idx][0]+" "+self.tt_list[idx][1]+" #"+ self.tt_list[idx][2])
                     ### set time
-                    self.interval_time = self.tt_list[idx][3]
+                    self.interval_time = self.interval_time_total = self.tt_list[idx][3]
                     ### update timetable display
                     self.timetable_display.configure(text=tt_string, fg=self.font_color_tt_display)
-                    self.play_sound(0.2, 600)
+                    self.play_sound(self.sound_duration, 600)
 
                 ### format interval time to hh:mm:ss
                 self.interval_time_string = str(self.time_format(self.interval_time))
@@ -246,6 +255,9 @@ class CountdownApp(tk.Frame):
             ### update timetable display
             self.timetable_display.configure(text=tt_string, fg=self.font_color_tt_display)
 
+        ### display next button
+        self.next_button.place(relx=0.8, rely=0.8, anchor=CENTER)
+
 
     ### definitions
     def definitions(self):
@@ -261,6 +273,7 @@ class CountdownApp(tk.Frame):
         self.window_resolution = "2500x1400"
         self.font_type = "Helvetica"
         self.sound_frequency = 3600
+        self.sound_duration = 0.2
         self.tt_loaded = False
 
 
