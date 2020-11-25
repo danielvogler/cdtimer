@@ -185,6 +185,9 @@ class CountdownApp(tk.Frame):
             if self.time <= 0:
                 self.time_display.configure(text="Finished", fg=self.color_end)
                 self.start_button.configure(text="Start")
+                ### time out timetable display
+                self.tt_loaded = False
+
                 if self.sound_on:
                     self.play_sound(1.0, 600)
     
