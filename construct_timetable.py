@@ -30,7 +30,7 @@ def read_timetable_file(timetable_file):
     print("Total sets: ", timetable_sets, "\n")
 
     ### construct list of all timetable sets
-    timetable_list = [[] for x in range(6)]
+    timetable_list = [[] for x in range(7)]
 
     ### different exercises
     for i in range(len(timetable[0])):
@@ -61,6 +61,8 @@ def read_timetable_file(timetable_file):
             timetable_list[4].append(int(float(timetable_order[j])))
             ### total time
             timetable_list[5].append(sum(timetable_list[3]))
+            ### set index
+            timetable_list[6].append(0)
 
     ### transpose list
     timetable_list = list(map(list, zip(*timetable_list)))
@@ -72,6 +74,7 @@ def read_timetable_file(timetable_file):
     timetable_set_time = []
     for i in range(len(timetable_list)):
         timetable_list[i][5] = set_time
+        timetable_list[i][6] = i
         timetable_set_time.append(set_time)
 
         set_time += timetable_list[i][3]
