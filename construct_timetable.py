@@ -79,7 +79,7 @@ def read_timetable_file(timetable_file):
 
         set_time += timetable_list[i][3]
         
-        print("Set", "{:02d}".format(timetable_list[i][4]),"-", timetable_list[i][0], timetable_list[i][1], "#", timetable_list[i][2], "for", timetable_list[i][3], "s at", timetable_list[i][5], "s")
+        print("Set", "{:02d}".format(timetable_list[i][6]+1),"-", timetable_list[i][0], timetable_list[i][1], "#", timetable_list[i][2], "for", timetable_list[i][3], "s at", timetable_list[i][5], "s")
 
     ### final time required for whole timetable
     set_time = timetable_list[-1][5] + timetable_list[-1][3]
