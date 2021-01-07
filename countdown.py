@@ -126,7 +126,7 @@ class CountdownApp(tk.Frame):
     ### browse timetable files
     def browseFiles(self):
 
-        self.tt_file = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes = (("Text files",("all files","*.*"))))
+        self.tt_file = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes =[("CSV files", ".csv")])
         self.timetable_construction()
 
 
