@@ -37,7 +37,7 @@ class CountdownApp(tk.Frame):
 
         ### enter and set time
         self.entry = Entry(self.master, width=8, font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, relief="flat", justify='center')
-        self.submit_button = Button(self.master, text="Set time", font=(self.font_type, self.font_size_button), fg=self.font_color_text, bg=self.color_background, borderwidth=0, highlightthickness=0, command = self.parse_input )
+        self.submit_button = Button(self.master, text="Set time", font=(self.font_type, self.font_size_button), fg=self.font_color_text, bg=self.color_background, borderwidth=0, highlightthickness=0, command = self.set_total_time )
 
         ### set sound frequency
         self.entry_sound = Entry(self.master, width=8, font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, relief="flat", justify='center')
@@ -63,7 +63,7 @@ class CountdownApp(tk.Frame):
         self.close_button = Button(self.master, text="Close", font=(self.font_type, self.font_size_button), bg=self.color_background, fg=self.font_color_text, borderwidth=0, highlightthickness=0, command=self.master.quit)
 
         ### browse for timetable file
-        self.browse_file = Button(self.master,text = "Browse Files", bg=self.color_background, fg=self.font_color_text,command = self.browseFiles)
+        self.browse_file = Button(self.master,text = "Browse Files", bg=self.color_background, fg=self.font_color_text,command = self.browse_files)
         self.browse_file.place(relx=0.5, rely=0.1, anchor=CENTER)
         ### layout - set time
         self.entry.place(relx=0.12, rely=0.1, anchor=CENTER)
@@ -83,7 +83,7 @@ class CountdownApp(tk.Frame):
 
 
     ### get time from entry field
-    def parse_input(self):
+    def set_total_time(self):
 
         self.total_time = 0
         self.hours = 0
@@ -108,6 +108,11 @@ class CountdownApp(tk.Frame):
 
         self.update_time_display()
 
+        self.interval_display.configure(text='', fg=self.font_color_time_display)
+        self.timetable_display.configure(text='', fg=self.font_color_tt_display)
+        self.next_timetable_display.configure(text='', fg=self.font_color_tt_display)
+
+
         return self.set_time
 
 
@@ -124,7 +129,7 @@ class CountdownApp(tk.Frame):
 
 
     ### browse timetable files
-    def browseFiles(self):
+    def browse_files(self):
 
         self.tt_file = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes =[("CSV files", ".csv")])
         self.timetable_construction()
