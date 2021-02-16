@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='cdtimer',
-      version='0.1',
+      version='0.0.2',
       description='Timer tool with sequenced interval countdowns',
       url='https://github.com/danielvogler/cdtimer',
       author='Daniel Vogler',
