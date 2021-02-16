@@ -1,6 +1,6 @@
-# Countdown tool
+# Countdown timer
 
-A countdown tool with large display that counts down from a set time. Optionally plays sound at given interval frequency or loads timetable of tasks.
+A countdown timer with large display that counts down from a set time or goes through sequenced intervals. Optionally plays sound at given interval frequency or loads timetable of tasks.
 
 ### Usage
 - **Countdown time**: Enter in top left window for total countdown time.
@@ -18,6 +18,7 @@ A countdown tool with large display that counts down from a set time. Optionally
 - **Next** (only for loaded timetables): Skip to next set
 
 ### Dependencies
+- Tkinter (<code>apt-get install python3-tk</code>)
 - [SoX - Sound eXchange](http://sox.sourceforge.net/) - Only if you want to play sound. 
 Install for Linux (<code>apt-get install sox</code>) or via PyPi (<code>pip install sox</code>).
 

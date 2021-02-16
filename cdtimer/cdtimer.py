@@ -1,6 +1,6 @@
 """
 Daniel Vogler
-countdown app
+cdtimer - countdown timer
 """
 
 import tkinter as tk
@@ -8,13 +8,12 @@ from tkinter import *
 from tkinter import filedialog
 
 import os
-from threading import Thread
 
 import warnings
 warnings.filterwarnings("ignore", message="play FAIL sox: Sorry, there is no default audio device configured")
 
 
-class CountdownApp(tk.Frame):
+class CDTimer(tk.Frame):
 
 
     ### initialize
@@ -333,6 +332,6 @@ class CountdownApp(tk.Frame):
 
 if __name__ == "__main__":
     app = Tk()
-    my_gui = CountdownApp(app)
+    my_gui = CDTimer(app)
     app.title("Countdown timer")
     app.mainloop()
