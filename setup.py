@@ -6,5 +6,4 @@ setup(name='cdtimer',
       author='Daniel Vogler',
       author_email='geopard.py@gmail.com',
       license='MIT',
-      packages=['cdtimer'],
-      install_requires=['tkinter>=8.6'])
+      packages=['cdtimer'])
