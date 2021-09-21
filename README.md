@@ -22,9 +22,6 @@ A countdown timer with large display that counts down from a set time or goes th
 - [SoX - Sound eXchange](http://sox.sourceforge.net/) - Only if you want to play sound. 
 Install for Linux (<code>apt-get install sox</code>) or via PyPi (<code>pip install sox</code>).
 
-### Credits 
-Daniel Vogler
-
 
 
 ![Example image](/images/countdown_example.png "Example of countdown")
